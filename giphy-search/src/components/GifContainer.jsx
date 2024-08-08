@@ -1,3 +1,9 @@
+import { useEffect } from "react"
+useEffect(()=>
+    
+)
+
+
 function GifContainer() {
     return (
         <ul>
@@ -5,5 +11,6 @@ function GifContainer() {
         </ul>
     )
 }
+
 
 export default GifContainer
