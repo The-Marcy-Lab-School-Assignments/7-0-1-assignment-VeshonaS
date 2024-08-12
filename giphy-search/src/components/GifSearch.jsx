@@ -1,11 +1,25 @@
-function GifSearch() {
-    return (
-        <form>
-            <label htmlFor="searchInput">Enter a Search Term </label>
-            <input type="text" className="form-control" id="searchInput" />
-            <button type="submit" className="btn btn-success">Search</button>
-        </form>
-    )
-}
+// src/SearchForm.js
+import React, { useState } from 'react';
 
-export default GifSearch
+ const GifSearch = ({ setQuery }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setQuery(inputValue);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Search for GIFs"
+      />
+      <button type="submit">Search</button>
+    </form>
+  );
+};
+
+export default GifSearch;
