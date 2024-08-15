@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import GifSearch from'./GifSearch'
-import GifContainer from './GifContainer';
+import GifSearch from './components/GifSearch';
+import GifContainer from './components/GifContainer';
+import API_KEY from '../config';
 
-export const App = () => {
+function App () {
   const [query, setQuery] = useState('');
   const [gifs, setGifs] = useState([]);
 
   useEffect(() => {
-    if (query !== '') {
+    const url = query ? `https://api.giphy.com/v1/gifs/search?q=${query}&limit=3&api_key=${API_KEY}`:  `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3&rating=g`
+    
       const fetchGifs = async () => {
-        const apiKey = 'LWRNzPufLxWTLY7Br2UJkPkbNmTbmJXI';
-        const response = await fetch(
-          `https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=${apiKey}`
-        );
+        const response = await fetch(url);
         const { data } = await response.json();
         setGifs(data);
       };
 
       fetchGifs();
-    }
+
   }, [query]);
 
   return (
@@ -30,4 +29,4 @@ export const App = () => {
   );
 };
 
-// export default App;
+export default App;

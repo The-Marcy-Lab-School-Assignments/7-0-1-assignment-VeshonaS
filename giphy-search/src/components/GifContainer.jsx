@@ -1,5 +1,5 @@
 
-function GifContainer() {
+function GifContainer({ gifs }) {
     return (
         <ul>
           {gifs.map((gif) => (
